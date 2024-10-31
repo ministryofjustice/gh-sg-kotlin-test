@@ -5,14 +5,14 @@ generic-service:
   replicaCount: 4
 
   image:
-    repository: quay.io/hmpps/gh-sg-kotlin-test
+    repository: ghcr.io./ministryofjustice/gh-sg-kotlin-test
     tag: app_version # override at deployment time
     port: 8080
 
   ingress:
     enabled: true
     host: app-hostname.local # override per environment
-    tlsSecretName: gh-sg-kotlin-test-cert
+    tlsSecretName: gh-sg-kotlin-cert
 
   # Environment variables to load into the deployment
   env:
@@ -27,7 +27,7 @@ generic-service:
   #     [name of environment variable as seen by app]: [key of kubernetes secret to load]
 
   namespace_secrets:
-    gh-sg-kotlin-test:
+    sg-kotlin-test:
       APPINSIGHTS_INSTRUMENTATIONKEY: "APPINSIGHTS_INSTRUMENTATIONKEY"
       # Example client registration secrets
       EXAMPLE_API_CLIENT_ID: "TEMPLATE_KOTLIN_API_CLIENT_ID"
