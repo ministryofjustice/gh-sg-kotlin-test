@@ -37,7 +37,7 @@ jobs:
           echo "Pull Request Head Ref: ${{ github.event.pull_request.head.ref }}"
           echo "Pull Request Base Ref: ${{ github.event.pull_request.base.ref }}"
           echo "Pull Request User Login: ${{ github.event.pull_request.user.login }}"
-  display_fields with_condition:
+  display_fields_with_condition:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     steps:
