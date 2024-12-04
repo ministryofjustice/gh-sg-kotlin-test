@@ -1,4 +1,4 @@
-name: Pipeline [test -> build -> deploy]
+name: New poipeline for testing
 
 on:
   push:
