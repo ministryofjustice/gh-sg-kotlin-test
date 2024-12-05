@@ -59,7 +59,7 @@ jobs:
           echo "Pull Request User Login: ${{ github.event.pull_request.user.login }}"
   display_fields_with_condition_after_main_push:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.merged == 'true' && github.ref == 'refs/heads/main' }}
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - name: Display GitHub Event Fields
         run: |
