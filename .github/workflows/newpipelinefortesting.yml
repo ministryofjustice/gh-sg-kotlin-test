@@ -4,6 +4,8 @@ on:
   pull_request:
     types:
       - closed
+    branches:
+      - main
 
   workflow_dispatch:
     inputs:
@@ -38,6 +40,23 @@ jobs:
   display_fields_with_condition:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    steps:
+      - name: Display GitHub Event Fields
+        run: |
+          echo "Event Name: ${{ github.event_name }}"
+          echo "github Ref: ${{ github.ref }}"
+          echo "Base Ref: ${{ github.base_ref }}"
+          echo "Event Action: ${{ github.event.action }}"
+          echo "Pull Request Merged: ${{ github.event.pull_request.merged }}"
+          echo "Pull Request Number: ${{ github.event.pull_request.number }}"
+          echo "Pull Request Title: ${{ github.event.pull_request.title }}"
+          echo "Pull Request Body: ${{ github.event.pull_request.body }}"
+          echo "Pull Request Head Ref: ${{ github.event.pull_request.head.ref }}"
+          echo "Pull Request Base Ref: ${{ github.event.pull_request.base.ref }}"
+          echo "Pull Request User Login: ${{ github.event.pull_request.user.login }}"
+  display_fields_with_condition_after_main_push:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.merged == 'true' && github.ref == 'refs/heads/main' }}
     steps:
       - name: Display GitHub Event Fields
         run: |
